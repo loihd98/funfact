@@ -7,6 +7,10 @@ function App() {
   const [funfact, setFunfact] = useState<string | null>(null);
 
   useEffect(() => {
+    // Retrieve the language from localStorage or default to English
+    const storedLanguage = localStorage.getItem("language") || "en";
+    i18n.changeLanguage(storedLanguage);
+
     const updatedFunfacts = Array.from({ length: 8 }, (_, i) =>
       t(`funFacts.fact${i + 1}`)
     );
@@ -20,7 +24,9 @@ function App() {
   };
 
   const handleLanguageChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    i18n.changeLanguage(event.target.value);
+    const selectedLanguage = event.target.value;
+    i18n.changeLanguage(selectedLanguage);
+    localStorage.setItem("language", selectedLanguage); // Store the selected language in localStorage
   };
 
   return (
@@ -37,6 +43,7 @@ function App() {
       </button>
       <select
         onChange={handleLanguageChange}
+        value={localStorage.getItem("language") || "en"} // Use value instead of defaultValue to reflect changes dynamically
         className="fixed top-4 right-4 px-2 py-1 border rounded bg-gradient-to-r from-green-400 to-blue-500 text-white cursor-pointer transform transition-transform duration-300 hover:scale-105 hover:from-green-500 hover:to-blue-600 active:scale-95 focus:outline-none focus:ring-2 focus:ring-blue-500"
       >
         <option value="en" className="text-black">EN</option>
