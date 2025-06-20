@@ -6,15 +6,21 @@ function App() {
   const [funfacts, setFunfacts] = useState<string[]>([]);
   const [funfact, setFunfact] = useState<string | null>(null);
 
+  const getStoredLanguage = () => localStorage.getItem("i18nextLng") || "ja";
+
+  const updateFunFacts = () => {
+    const funFactKeys = Array.from({ length: 8 }, (_, i) => `funFacts.fact${i + 1}`);
+    return funFactKeys.map((key) => t(key));
+  };
+
   useEffect(() => {
-    const storedLanguage = localStorage.getItem("i18nextLng") || "en";
+    const storedLanguage = getStoredLanguage();
     i18n.changeLanguage(storedLanguage);
 
-    const funFactKeys = Array.from({ length: 8 }, (_, i) => `funFacts.fact${i + 1}`);
-    const updatedFunfacts = funFactKeys.map((key) => t(key));
+    const updatedFunfacts = updateFunFacts();
     setFunfacts(updatedFunfacts);
     setFunfact(updatedFunfacts[0] || null);
-  }, [i18n, localStorage.getItem("i18nextLng")]);
+  }, [i18n]);
 
   const handleClick = () => {
     if (funfacts.length > 0) {
@@ -27,6 +33,10 @@ function App() {
     const selectedLanguage = event.target.value;
     i18n.changeLanguage(selectedLanguage);
     localStorage.setItem("i18nextLng", selectedLanguage);
+
+    const updatedFunfacts = updateFunFacts();
+    setFunfacts(updatedFunfacts);
+    setFunfact(updatedFunfacts[0] || null);
   };
 
   return (
@@ -43,10 +53,10 @@ function App() {
       </button>
       <select
         onChange={handleLanguageChange}
-        value={localStorage.getItem("i18nextLng") || "en"}
+        value={getStoredLanguage()}
         className="fixed top-4 right-4 px-2 py-1 border rounded bg-gradient-to-r from-green-400 to-blue-500 text-white cursor-pointer transition-transform duration-300 hover:scale-105 hover:from-green-500 hover:to-blue-600 active:scale-95 focus:outline-none focus:ring-2 focus:ring-blue-500"
       >
-        {["en", "ja", "vi"].map((lang) => (
+        {["ja", "vi", "en"].map((lang) => (
           <option key={lang} value={lang} className="text-black">
             {lang.toUpperCase()}
           </option>
