@@ -47,7 +47,7 @@ function App() {
       </p>
       <button
         onClick={handleClick}
-        className="px-4 py-2 bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded transition-transform duration-300 hover:scale-105 hover:from-purple-600 hover:to-blue-600 active:scale-95"
+        className="px-4 py-2 bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded transition-transform duration-300 hover:scale-105 hover:from-purple-600 hover:to-blue-600 active:scale-95 cursor-pointer"
       >
         {t("btn_text")}
       </button>
