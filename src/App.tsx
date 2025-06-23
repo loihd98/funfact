@@ -42,7 +42,7 @@ function App() {
   return (
     <div className="w-full h-screen flex flex-col items-center justify-center p-3 lg:p-4 gap-16 lg:gap-32">
       <h1 className="font-bold text-4xl lg:text-6xl">{t("title")}</h1>
-      <p className="h-[300px] text-center flex justify-center items-center text-3xl lg:text-4xl">
+      <p className="h-[300px] max-w-1/2 text-center flex justify-center items-center text-3xl lg:text-4xl">
         {funfact || t("noFunFact")}
       </p>
       <button
