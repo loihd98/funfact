@@ -9,6 +9,8 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import translationEN from '../public/locales/en/value.json';
 import translationVI from '../public/locales/vi/value.json';
 import translationJP from '../public/locales/ja/value.json';
+import translationKO from '../public/locales/ko/value.json';
+
 
 
 i18n
@@ -29,7 +31,10 @@ i18n
         },
         ja: {
             translation: translationJP
-        }
+        },
+        ko: {
+          translation: translationKO
+      }
     },
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default

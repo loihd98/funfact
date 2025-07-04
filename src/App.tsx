@@ -56,7 +56,7 @@ function App() {
         value={getStoredLanguage()}
         className="fixed top-4 right-4 px-2 py-1 border rounded bg-gradient-to-r from-green-400 to-blue-500 text-white cursor-pointer transition-transform duration-300 hover:scale-105 hover:from-green-500 hover:to-blue-600 active:scale-95 focus:outline-none focus:ring-2 focus:ring-blue-500"
       >
-        {["ja", "vi", "en"].map((lang) => (
+        {["ja", "vi", "en", "ko"].map((lang) => (
           <option key={lang} value={lang} className="text-black">
             {lang.toUpperCase()}
           </option>
